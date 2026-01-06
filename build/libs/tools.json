@@ -1,0 +1,17 @@
+[ {
+  "type" : "function",
+  "function" : {
+    "name" : "run_cmd",
+    "description" : "Execute system commands",
+    "parameters" : {
+      "type" : "object",
+      "properties" : {
+        "command" : {
+          "type" : "string",
+          "description" : "The command to execute"
+        }
+      },
+      "required" : [ "command" ]
+    }
+  }
+} ]
