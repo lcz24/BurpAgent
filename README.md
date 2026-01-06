@@ -39,8 +39,15 @@
 加载插件后，进入 **BurpAgent Settings** 标签页：
 1. **API Key**: 填入 OpenAI 或兼容接口的 API Key。
 2. **Model**: 推荐使用 `gpt-4o` 以获得更好的工具调用体验。
+3. **Prompt Template**: 定义默认的分析提示词，支持 `{REQUEST}` 和 `{RESPONSE}` 占位符。
+4. **Tools Directory**: 设置存放自定义工具脚本的本地目录（例如 `D:\burp-tools`）。
 
-### 3. 使用
+### 3. 技能管理 (Agent Skills)
+技能 (Skills) 是一组预设的 System Prompts，用于切换 AI 的分析角色。
+- 在 **Agent Skills** 标签页查看、添加或编辑技能。
+- 分析时，可以在窗口顶部的下拉菜单中快速切换（例如从 "Default" 切换到 "Code Auditor"）。
+
+### 4. 使用
 1. 在 **Proxy** 或 **Repeater** 中右键点击请求。
 2. 选择 **Extensions** -> **Send to BurpAgent**。
 3. 分析窗口将自动弹出并开始工作。
