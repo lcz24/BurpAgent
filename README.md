@@ -3,6 +3,7 @@
 **BurpAgent** 将大语言模型 (LLM) 和 MCP (Model Context Protocol) 引入 Burp Suite，使其能够连接本地工具、数据库或远程 Agent，辅助安全测试。
 
 ![Status](https://img.shields.io/badge/Status-Active-green) ![Java](https://img.shields.io/badge/Language-Java-orange) ![BurpSuite](https://img.shields.io/badge/Platform-Burp%20Suite-blue)
+<img width="3838" height="1850" alt="image" src="https://github.com/user-attachments/assets/5d0f86f6-ee3a-412a-be2b-e67ad2f13f6b" />
 
 ## 功能概览
 
@@ -41,11 +42,13 @@
 2. **Model**: 推荐使用 `gpt-4o` 以获得更好的工具调用体验。
 3. **Prompt Template**: 定义默认的分析提示词，支持 `{REQUEST}` 和 `{RESPONSE}` 占位符。
 4. **Tools Directory**: 设置存放自定义工具脚本的本地目录（例如 `D:\burp-tools`）。
+<img width="3833" height="2076" alt="image" src="https://github.com/user-attachments/assets/0ee16e3c-6471-4789-a7db-a777379eb63c" />
 
 ### 3. 技能管理 (Agent Skills)
 技能 (Skills) 是一组预设的 System Prompts，用于切换 AI 的分析角色。
 - 在 **Agent Skills** 标签页查看、添加或编辑技能。
 - 分析时，可以在窗口顶部的下拉菜单中快速切换（例如从 "Default" 切换到 "Code Auditor"）。
+<img width="3836" height="2077" alt="image" src="https://github.com/user-attachments/assets/0a36c988-6d55-4b08-804a-860bd04a6cdb" />
 
 ### 4. 使用
 1. 在 **Proxy** 或 **Repeater** 中右键点击请求。
@@ -140,6 +143,7 @@ Filesystem|npx -y @modelcontextprotocol/server-filesystem D:\projects
 4. 点击 **Save** 保存。现在，当你在分析请求时，如果 AI 认为需要进行 SQL 注入测试，它就会自动调用这个工具并读取 sqlmap 的输出。
 
 ---
+<img width="3838" height="2077" alt="image" src="https://github.com/user-attachments/assets/9c755c1e-2b55-486e-a367-3fda2826b5ca" />
 
 ## 常见问题
 
