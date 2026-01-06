@@ -82,11 +82,62 @@ Filesystem|npx -y @modelcontextprotocol/server-filesystem D:\projects
 }
 ```
 
-### 添加自定义工具
-1. 在 **General Settings** 设置 `Tools Directory`。
-2. 在 **Custom Tools** 标签页点击 **Add Tool**。
-3. 填写工具名称、类型、参数 Schema 和脚本内容。
-4. 保存后，AI 即可在分析时自动调用该工具。
+### 添加自定义工具 (Custom Tools)
+
+自定义工具允许你通过编写 Python 或 Bash 脚本来扩展 AI 的能力。
+
+**示例：创建一个 SQLMap 调用工具**
+
+1. **前提**：在 `General Settings` 中设置好 `Tools Directory`。
+2. 进入 **Custom Tools** 标签页，点击 **Add Tool**。
+3. 填写如下信息：
+
+- **Name**: `run_sqlmap`
+- **Description**: `Run sqlmap on a target URL to test for SQL injection.`
+- **Script Type**: `Python`
+- **Parameters (JSON Schema)**:
+  ```json
+  {
+    "type": "object",
+    "properties": {
+      "url": {
+        "type": "string",
+        "description": "The target URL to scan"
+      },
+      "level": {
+        "type": "string",
+        "description": "Level of tests to perform (1-5)",
+        "default": "1"
+      }
+    },
+    "required": ["url"]
+  }
+  ```
+- **Script Content**:
+  ```python
+  import argparse
+  import subprocess
+
+  def main():
+      parser = argparse.ArgumentParser()
+      parser.add_argument('--url', required=True)
+      parser.add_argument('--level', default='1')
+      args, unknown = parser.parse_known_args()
+
+      # 构建 sqlmap 命令 (请确保 sqlmap 在 PATH 中或使用绝对路径)
+      cmd = ["sqlmap", "-u", args.url, "--batch", "--level", args.level]
+      
+      try:
+          result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+          print(result.stdout)
+      except Exception as e:
+          print(f"Error: {str(e)}")
+
+  if __name__ == "__main__":
+      main()
+  ```
+
+4. 点击 **Save** 保存。现在，当你在分析请求时，如果 AI 认为需要进行 SQL 注入测试，它就会自动调用这个工具并读取 sqlmap 的输出。
 
 ---
 
